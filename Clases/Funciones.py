@@ -77,7 +77,7 @@ def histograma(df, variable, media, desviaciontipica, varianza, min, max):
     plt.title('Histograma de {}'.format(variable))
     plt.axvline(media, color='red', linestyle='dashed', linewidth=1,label = str(media))
     plt.legend(loc='upper right')
-    plt.savefig('img/Histograma-de-{}'.format(variable) + '.png', bbox_inches='tight')
+    plt.savefig('img/Histograma_de_{}'.format(variable) + '.png', bbox_inches='tight')
     plt.show()
 
 
@@ -96,14 +96,31 @@ def graficas(df):
     plt.xlabel('Número de viviendas por rango de años')
     x = df3['numeroVivienda']
     plt.pie(x, autopct="%0.1f %%", labels=nombres)
-    plt.savefig('img/Número-viviendas-por-años' + '.png', bbox_inches='tight')
+    plt.savefig('img/Número_de_viviendas_por_rango_de_años' + '.png', bbox_inches='tight')
     
     df4.plot(kind='bar')
     plt.title('Relación precio/población/salario con la anterior casa')
-    plt.savefig('img/Relación-precio-población-salario-con-anterior' + '.png', bbox_inches='tight')
+    plt.savefig('img/Relación_precio_población_salario_con_la_anterior_casa' + '.png', bbox_inches='tight')
     
     df5.plot(kind='bar')
-    plt.title('Relación habitaciones y dormitorios con la anterios casa')
-    plt.savefig('img/Relación-habitaciones-dormitorios-con-anterior' + '.png', bbox_inches='tight')
+    plt.title('Relación habitaciones y dormitorios con la anterior casa')
+    plt.savefig('img/Relación_habitaciones_dormitorios_con_la_anterior_casa' + '.png', bbox_inches='tight')
     
     plt.show()
+
+valornumerico = ['precio', 'media-salario', 'media-antig-casa', 'media-numero-habitaciones','media-numero-dormitorios-casas', 'poblacion']
+print('------------Análisis de las variables numéricas del CSV----------------')
+
+for n in valornumerico:
+    min = df[n].min()
+    max = df[n].max()
+    media = round(calculomedia(df, n), 2)
+    varianza = round(calculovarianza(df, n, media), 2)
+    desviacion_tipica = round((varianza**(1/2)), 2)
+    cuartil1 = np.percentile(df[n], 25)
+    cuartil2 = np.percentile(df[n], 50)
+    cuartil3 = np.percentile(df[n], 75)
+    valoresatipicos = criterioDeTukey(df, n, q1, q3)
+    print('Los valores atípicos de {}'.format(n) + ' son: ' + str(len(valoresatipicos)) + '\n')
+    
+    histograma( df, n, media, desviacion_tipica, varianza, min, max)
