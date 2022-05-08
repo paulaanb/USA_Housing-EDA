@@ -79,3 +79,31 @@ def histograma(df, variable, media, desviaciontipica, varianza, min, max):
     plt.legend(loc='upper right')
     plt.savefig('img/Histograma-de-{}'.format(variable) + '.png', bbox_inches='tight')
     plt.show()
+
+
+#Representamos las graficas
+def graficas(df):
+    rango = [0, 2, 4, 6, 8, 10]
+    nombres = ['0-2', '2-4', '4-6', '6-8', '8-10']
+    
+    df['media-antig-casa'] = pd.cut(df['media-antig-casa'], rango, labels = nombres)
+    df2 = df.groupby('media-antig-casa').mean()
+    df3= df.groupby('media-antig-casa').count()
+    df4 = df2[['precio', 'poblacion', 'media-salario']]
+    df5 = df2[['media-numero-habitaciones', 'media-numero-dormitorios-casas']]
+    df3.rename(columns={'precio': 'numeroVivienda'}, inplace = True)
+    plt.subplots()
+    plt.xlabel('Número de viviendas por rango de años')
+    x = df3['numeroVivienda']
+    plt.pie(x, autopct="%0.1f %%", labels=nombres)
+    plt.savefig('img/Número-viviendas-por-años' + '.png', bbox_inches='tight')
+    
+    df4.plot(kind='bar')
+    plt.title('Relación precio/población/salario con la anterior casa')
+    plt.savefig('img/Relación-precio-población-salario-con-anterior' + '.png', bbox_inches='tight')
+    
+    df5.plot(kind='bar')
+    plt.title('Relación habitaciones y dormitorios con la anterios casa')
+    plt.savefig('img/Relación-habitaciones-dormitorios-con-anterior' + '.png', bbox_inches='tight')
+    
+    plt.show()
