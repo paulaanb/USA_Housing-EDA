@@ -51,3 +51,12 @@ def bar_plt(df, variable):
     plt.show()
     
     print("{}:\n{}".format(variable, valorvariable))
+
+#Definimos la funcion para calcular la media y la varianza
+def media(df, variable):
+    media =  (df[variable].sum())/(df[variable].count())
+    return media
+
+def varianza(df, variable, media):
+    varianza = ((df[variable] - media)**2).sum()/(df[variable].count())
+    return varianza
