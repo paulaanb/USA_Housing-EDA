@@ -139,3 +139,13 @@ grafica = plt.bar(df_or3.index, df_or3['incrementoAnual'])
 print (df_or3['numeroViviendas'],df_or3['incrementoAnual'])
 incremento = 0
 
+#Funcion para crear la grafica
+for p in grafica:
+    width= p.get_width()
+    height = p.get_height()
+    x, y = p.get_xy()
+    plt.text(x + width/2, y + height*1.01, str(df_or3.incrementoAnual[incremento]) + '%', ha = 'center', weight = 'bold')
+    incremento = incremento + 1
+plt.title('Incremento de viviendas por año')
+plt.savefig('img/Incremento_anual' + '.png', bbox_inches='tight')   
+plt.show()
