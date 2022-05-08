@@ -37,3 +37,17 @@ print(df2.info(), "\n")
 print('----------Clasificación de los resultados anteriores --------------')
 print('La categoria de los resultados es la siguiente:')
 print('Las categorias numericas nombradas anteriormente son: precio, media-salario, media-antig-casa, media-numero-habitaciones,media-numero-dormitorios-casas, poblacion')
+
+#Definimos una funcion para comparar
+def bar_plt(df, variable):
+    variable = df[variable]
+    valorvariable = variable.value_counts()
+    #Establecemos los valores de la grafica
+    plt.figure(figsize=(5, 2)) 
+    plt.bar(valorvariable.index, valorvariable) 
+    plt.xticks(valorvariable.index, valorvariable.index.values) 
+    plt.ylabel('Frecuencia')
+    plt.tittle(variable)
+    plt.show()
+    
+    print("{}:\n{}".format(variable, valorvariable))
