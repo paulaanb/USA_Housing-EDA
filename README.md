@@ -53,7 +53,7 @@ Pasos:
 
     plt.scatter(): se usa para crear diagramas de dispersión
 
-Explicación gráficas:
+# Explicación gráficas:
 
 1. Diagrama de barras:
 
