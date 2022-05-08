@@ -30,5 +30,10 @@ print('----------Descripción del CSV----------------')
 print("Nos disponemos a explicar los datos anteriores:")
 print(df2.describe(), "\n")
 print("En estos datos podemos destacar dos cosas:", "\n", "En primer lugar, la media total esta casi en la mitad, coincidiendo con el percentil 50. Esto significa que ambos son el mismo valor.", "\n", "Segundo, como punto minimo y punto maximo, destacamos el numero de habitaciones, la antiguedad y la ganancia generada.")
+print('Información datos')
+print(df2.info(), "\n")
 
-
+#Clasificamos los resultados obtenidos anteriormente
+print('----------Clasificación de los resultados anteriores --------------')
+print('La categoria de los resultados es la siguiente:')
+print('Las categorias numericas nombradas anteriormente son: precio, media-salario, media-antig-casa, media-numero-habitaciones,media-numero-dormitorios-casas, poblacion')
