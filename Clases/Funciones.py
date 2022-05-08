@@ -18,7 +18,17 @@ cambioingesp =  {'Avg. Area Income': 'Ganancia Media','Avg. Area House Age':'Eda
 df2 = traduccion(f, traducido)
 print("\n")
 
+#Los datos del archivo segun las filas son:
+print('------------Datos del CSV-------------')
+print('Primeras filas')
+print(df.head(), "\n")
+print('Últimas filas')
+print(df.tail(), "\n")
+
 #Una vez que tenemos los datos, procedemos a explicar sus caracteristicas
+print('----------Descripción del CSV----------------')
 print("Nos disponemos a explicar los datos anteriores:")
-print(f2.describe())
+print(df2.describe(), "\n")
 print("En estos datos podemos destacar dos cosas:", "\n", "En primer lugar, la media total esta casi en la mitad, coincidiendo con el percentil 50. Esto significa que ambos son el mismo valor.", "\n", "Segundo, como punto minimo y punto maximo, destacamos el numero de habitaciones, la antiguedad y la ganancia generada.")
+
+
