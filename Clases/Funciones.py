@@ -124,3 +124,18 @@ for n in valornumerico:
     print('Los valores atípicos de {}'.format(n) + ' son: ' + str(len(valoresatipicos)) + '\n')
     
     histograma( df, n, media, desviacion_tipica, varianza, min, max)
+
+#Incremento del número de viviendas por año
+rango=[1,2,3,4,5,6,7,8,9,10]
+nombres= ['3', '4', '5', '6', '7', '8', '9', '10']
+
+df_or['media-antig-casa'] = pd.cut(df_or['media-antig-casa'], rango, labels = nombres)
+df_or2 = df_or.groupby('media-antig-casa').mean()
+df_or3= df_or.groupby('media-antig-casa').count()
+df_or3.rename(columns={'precio': 'numeroViviendas'}, inplace = True)
+df_or3['incrementoAnual'] = round(df_or3.numeroViviendas.pct_change() * 100, 2)
+df_or3['incrementoAnual'][0]=0
+grafica = plt.bar(df_or3.index, df_or3['incrementoAnual'])
+print (df_or3['numeroViviendas'],df_or3['incrementoAnual'])
+incremento = 0
+
