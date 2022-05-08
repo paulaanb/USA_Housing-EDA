@@ -60,3 +60,22 @@ def media(df, variable):
 def varianza(df, variable, media):
     varianza = ((df[variable] - media)**2).sum()/(df[variable].count())
     return varianza
+
+#Representamos en un historiograma los datos
+def histograma(df, variable, media, desviaciontipica, varianza, min, max):
+
+    if media < 10:
+        a = 0.01
+    else:
+        a = 1
+    x = np.arange(min, max + a, a)
+    f = 1/(desviaciontipica * np.sqrt(2*np.pi)) * np.exp(-(x - media) ** 2/(2 * varianza))
+    fig, ax1 = plt.subplots()
+    ax1.hist(df[variable], bins= 50)
+    ax2 = ax1.twinx()
+    ax2.plot(x, f, color = 'black', linestyle = 'dashed', linewidth=3)
+    plt.title('Histograma de {}'.format(variable))
+    plt.axvline(media, color='red', linestyle='dashed', linewidth=1,label = str(media))
+    plt.legend(loc='upper right')
+    plt.savefig('img/Histograma-de-{}'.format(variable) + '.png', bbox_inches='tight')
+    plt.show()
